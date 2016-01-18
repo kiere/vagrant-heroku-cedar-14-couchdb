@@ -26,13 +26,7 @@ if [ -f "$COUCHDB_PROVISIONED_ON" ]
   exit
 fi
 
-COUCH_REPO_APT_SOURCE=/etc/apt/sources.list.d/couchdb.list
-if [ ! -f "$COUCH_REPO_APT_SOURCE" ]
-  then
-  # Add CouchDB apt repo:
-  echo 'deb http://ppa.launchpad.net/couchdb/stable/ubuntu trusty main' > "$COUCH_REPO_APT_SOURCE"
-  echo 'deb-src http://ppa.launchpad.net/couchdb/stable/ubuntu trusty main' > "$COUCH_REPO_APT_SOURCE"
-fi
+
 # Install the ppa-finding tool
 # for 14.04 release
 apt-get install -y software-properties-common
@@ -43,7 +37,7 @@ apt-get -y update
 # Remove any existing couchdb binaries
 apt-get remove -yf couchdb couchdb-bin couchdb-common
 # Note the version number displayed and ensure its what you expect
-apt-get install -V couchdb
+apt-get install -Vy couchdb
 
 # Tag the provision time:
 date > "$COUCHDB_PROVISIONED_ON"

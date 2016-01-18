@@ -40,5 +40,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "config/vagrant/rbenv_setup.sh", privileged: false
 
   # PostgreSQL Server port forwarding
-  config.vm.network :forwarded_port, host: 27017, guest: 27017
+  config.vm.network :forwarded_port, host: 5984, guest: 5984
 end
